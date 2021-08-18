@@ -2,6 +2,7 @@ import React from 'react'
 import {IUser} from './IUser'
 interface Props{
     user: IUser
+ 
 }
 
 

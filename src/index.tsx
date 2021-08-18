@@ -7,6 +7,7 @@ import {Navbar} from './components/navegacion/Navbar'
 import 'bootswatch/dist/vapor/bootstrap.min.css'
 import Users from './components/user/Users';
 import HomeIndex from './components/home/index'
+import UserForm from './components/user/UserForm';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,8 +17,9 @@ ReactDOM.render(
       <div className="container-fluid p-4">
       <Switch>
 
-        <Route path="/usuarios" component={Users} />
-        <Route path="/" component={HomeIndex} />
+        <Route exact path="/usuarios" component={Users} />
+        <Route exact path="/" component={HomeIndex} />
+        <Route exact path="/user-create" component={UserForm} />
 
 
       </Switch>
