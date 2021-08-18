@@ -13,6 +13,8 @@ const UserForm = () => {
     };
 
     const [user, setUser] = useState<IUser>(initialState);
+    const [loading, setLoading] =useState(false);
+   
 
     const handletInputChange = (e: inputChange) => {
         setUser({...user, [e.target.name]: e.target.value});
@@ -21,8 +23,15 @@ const UserForm = () => {
     }
 
     const HandletSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        setLoading(true);
         e.preventDefault();
-        const res = await axios.post("http://localhost:4000/Identity/register", user);
+        const res = await axios.post("http://localhost:4000/Identity/register", user).catch((error)=>{
+            
+            setLoading(false);
+        });
+        
+        
+        setLoading(false);
     }
 
 
@@ -34,6 +43,12 @@ const UserForm = () => {
                     <div className="card">
                         <div className="card-header">
                             <h3>Crear Usuario</h3>
+                          
+                               
+                           
+                                
+
+                            
                         </div>
                         <div className="card-body">
                            
@@ -51,7 +66,15 @@ const UserForm = () => {
 
                         </div>
                         <div className="card-body">
-                            <button className="btn btn-success">Guardar</button>
+                            {
+                                loading == true? 
+
+                                <button className="btn btn-success" disabled>Guardando...</button>
+                                :
+                                <button className="btn btn-success">Guardar</button>
+
+                            }
+                            
                         </div>
                     </div>
                     </form>
